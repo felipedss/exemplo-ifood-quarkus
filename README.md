@@ -1,3 +1,3 @@
 
 
-Código criado no curso de desenvolvimento Web com Quarkus no Udemy
+Código desenvolvido para estudos com quarkus
