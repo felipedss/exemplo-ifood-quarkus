@@ -6,18 +6,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "restaurante")
 public class Restaurante extends PanacheEntity {
 
-    @NotBlank
     private String nome;
 
-    @NotBlank
     private String proprietario;
+
+    private String cnpj;
 
     @CreationTimestamp
     private LocalDate dataCriacao;
@@ -39,6 +38,14 @@ public class Restaurante extends PanacheEntity {
 
     public void setProprietario(String proprietario) {
         this.proprietario = proprietario;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public LocalDate getDataCriacao() {

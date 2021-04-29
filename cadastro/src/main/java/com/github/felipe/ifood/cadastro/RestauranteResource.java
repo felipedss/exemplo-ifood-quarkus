@@ -1,9 +1,14 @@
 package com.github.felipe.ifood.cadastro;
 
+import com.github.felipe.ifood.cadastro.common.ConstraintViolationResponse;
 import com.github.felipe.ifood.cadastro.dto.*;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -33,7 +38,9 @@ public class RestauranteResource {
 
     @POST
     @Transactional
-    public Response adicionar(AdicionarRestauranteDTO dto) {
+    @APIResponse(responseCode = "201", description = "Caso o restaurante seja cadastrado com sucesso")
+    @APIResponse(responseCode = "400", content = @Content(schema = @Schema(allOf = ConstraintViolationResponse.class)))
+    public Response adicionar(@Valid AdicionarRestauranteDTO dto) {
         final var restaurante = restauranteMapper.toEntity(dto);
         restaurante.persist();
         return Response.status(CREATED).build();
@@ -57,9 +64,9 @@ public class RestauranteResource {
     }
 
     @GET
-    @Path("{restauranteId}/pratos")
-    public List<PratoDTO> buscarPratos(@PathParam("restauranteId") Long restauranteId) {
-        Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(restauranteId);
+    @Path("{id}/pratos")
+    public List<PratoDTO> buscarPratos(@PathParam("id") Long id) {
+        Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(id);
         if (restauranteOp.isEmpty()) {
             throw new NotFoundException("Restaurante não existe");
         }
