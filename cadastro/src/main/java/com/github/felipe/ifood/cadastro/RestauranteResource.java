@@ -1,8 +1,6 @@
 package com.github.felipe.ifood.cadastro;
 
-import com.github.felipe.ifood.cadastro.dto.AdicionarRestauranteDTO;
-import com.github.felipe.ifood.cadastro.dto.RestauranteDTO;
-import com.github.felipe.ifood.cadastro.dto.RestauranteMapper;
+import com.github.felipe.ifood.cadastro.dto.*;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -24,6 +22,9 @@ public class RestauranteResource {
     @Inject
     RestauranteMapper restauranteMapper;
 
+    @Inject
+    PratoMapper pratoMapper;
+
     @GET
     public List<RestauranteDTO> buscar() {
         final Stream<Restaurante> stream = Restaurante.streamAll();
@@ -41,13 +42,9 @@ public class RestauranteResource {
     @PUT
     @Path("{id}")
     @Transactional
-    public Response atualizar(@PathParam("id") Long id, Restaurante dto) {
-        final Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(id);
-        restauranteOp.ifPresentOrElse(restaurante -> {
-            restaurante.setProprietario(dto.getProprietario());
-            restaurante.setNome(dto.getNome());
-            restaurante.persist();
-        }, NotFoundException::new);
+    public Response atualizar(@PathParam("id") Long id, AtualizarRestauranteDTO dto) {
+        final Optional<Restaurante> optional = Restaurante.findByIdOptional(id);
+        optional.ifPresentOrElse(restaurante -> restauranteMapper.toEntity(dto, restaurante).persist(), NotFoundException::new);
         return Response.ok().build();
     }
 
@@ -55,8 +52,19 @@ public class RestauranteResource {
     @Path("{id}")
     @Transactional
     public void excluir(@PathParam("id") Long id) {
-        final Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(id);
-        restauranteOp.ifPresentOrElse(restaurante -> Restaurante.deleteById(restaurante.id), NotFoundException::new);
+        final Optional<Restaurante> optional = Restaurante.findByIdOptional(id);
+        optional.ifPresentOrElse(restaurante -> Restaurante.deleteById(restaurante.id), NotFoundException::new);
+    }
+
+    @GET
+    @Path("{restauranteId}/pratos")
+    public List<PratoDTO> buscarPratos(@PathParam("restauranteId") Long restauranteId) {
+        Optional<Restaurante> restauranteOp = Restaurante.findByIdOptional(restauranteId);
+        if (restauranteOp.isEmpty()) {
+            throw new NotFoundException("Restaurante não existe");
+        }
+        Stream<Prato> pratos = Prato.stream("restaurante", restauranteOp.get());
+        return pratos.map(p -> pratoMapper.toDto(p)).collect(Collectors.toList());
     }
 
 }

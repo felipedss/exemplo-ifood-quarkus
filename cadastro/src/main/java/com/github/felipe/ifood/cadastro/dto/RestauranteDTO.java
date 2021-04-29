@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class RestauranteDTO {
 
+    private Long id;
+
     private String nome;
 
     private String proprietario;
@@ -11,6 +13,14 @@ public class RestauranteDTO {
     private LocalDate dataCriacao;
 
     private LocalDate dataAtualizacao;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

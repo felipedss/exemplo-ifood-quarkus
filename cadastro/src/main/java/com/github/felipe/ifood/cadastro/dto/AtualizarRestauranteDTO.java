@@ -1,6 +1,6 @@
 package com.github.felipe.ifood.cadastro.dto;
 
-public class AdicionarRestauranteDTO {
+public class AtualizarRestauranteDTO {
 
     private String nome;
 
