@@ -1,5 +1,6 @@
-package com.github.felipe.ifood.marketplace;
+package com.github.felipe.ifood.marketplace.dto;
 
+import com.github.felipe.ifood.marketplace.model.Restaurante;
 import io.vertx.mutiny.sqlclient.Row;
 
 import java.math.BigDecimal;

@@ -1,5 +1,6 @@
-package com.github.felipe.ifood.marketplace;
+package com.github.felipe.ifood.marketplace.model;
 
+import com.github.felipe.ifood.marketplace.dto.PratoDTO;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;

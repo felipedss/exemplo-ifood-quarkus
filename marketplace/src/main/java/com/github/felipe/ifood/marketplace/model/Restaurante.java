@@ -1,4 +1,4 @@
-package com.github.felipe.ifood.marketplace;
+package com.github.felipe.ifood.marketplace.model;
 
 public class Restaurante {
 

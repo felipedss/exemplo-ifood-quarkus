@@ -1,8 +1,9 @@
-package com.github.felipe.ifood.cadastro;
+package com.github.felipe.ifood.cadastro.resource;
 
 import com.github.felipe.ifood.cadastro.dto.AdicionarPratoDTO;
 import com.github.felipe.ifood.cadastro.dto.AtualizarPratoDTO;
 import com.github.felipe.ifood.cadastro.dto.PratoMapper;
+import com.github.felipe.ifood.cadastro.model.Prato;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

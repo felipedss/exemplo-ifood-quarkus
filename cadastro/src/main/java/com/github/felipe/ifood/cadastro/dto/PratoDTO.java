@@ -1,6 +1,6 @@
 package com.github.felipe.ifood.cadastro.dto;
 
-import com.github.felipe.ifood.cadastro.Restaurante;
+import com.github.felipe.ifood.cadastro.model.Restaurante;
 
 import java.math.BigDecimal;
 

@@ -1,7 +1,9 @@
-package com.github.felipe.ifood.cadastro;
+package com.github.felipe.ifood.cadastro.resource;
 
 import com.github.felipe.ifood.cadastro.common.ConstraintViolationResponse;
 import com.github.felipe.ifood.cadastro.dto.*;
+import com.github.felipe.ifood.cadastro.model.Prato;
+import com.github.felipe.ifood.cadastro.model.Restaurante;
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
 import org.eclipse.microprofile.metrics.annotation.Timed;

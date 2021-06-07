@@ -1,4 +1,4 @@
-package com.github.felipe.ifood.cadastro;
+package com.github.felipe.ifood.cadastro.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.CreationTimestamp;

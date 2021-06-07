@@ -1,6 +1,6 @@
 package com.github.felipe.ifood.cadastro.dto;
 
-import com.github.felipe.ifood.cadastro.Prato;
+import com.github.felipe.ifood.cadastro.model.Prato;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

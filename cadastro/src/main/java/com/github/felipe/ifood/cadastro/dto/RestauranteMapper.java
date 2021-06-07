@@ -1,6 +1,6 @@
 package com.github.felipe.ifood.cadastro.dto;
 
-import com.github.felipe.ifood.cadastro.Restaurante;
+import com.github.felipe.ifood.cadastro.model.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

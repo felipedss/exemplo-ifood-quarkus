@@ -1,6 +1,6 @@
 package com.github.felipe.ifood.cadastro.dto;
 
-import com.github.felipe.ifood.cadastro.Restaurante;
+import com.github.felipe.ifood.cadastro.model.Restaurante;
 import com.github.felipe.ifood.cadastro.common.DTO;
 import com.github.felipe.ifood.cadastro.common.ValidDTO;
 import org.hibernate.validator.constraints.br.CNPJ;

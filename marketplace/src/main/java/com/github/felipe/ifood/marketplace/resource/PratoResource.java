@@ -1,5 +1,7 @@
-package com.github.felipe.ifood.marketplace;
+package com.github.felipe.ifood.marketplace.resource;
 
+import com.github.felipe.ifood.marketplace.dto.PratoDTO;
+import com.github.felipe.ifood.marketplace.model.Prato;
 import io.smallrye.mutiny.Multi;
 import io.vertx.mutiny.pgclient.PgPool;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
