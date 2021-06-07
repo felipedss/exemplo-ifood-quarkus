@@ -12,6 +12,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.security.OAuthFlow;
 import org.eclipse.microprofile.openapi.annotations.security.OAuthFlows;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -41,6 +43,10 @@ public class RestauranteResource {
     @Inject
     PratoMapper pratoMapper;
 
+    @Inject
+    @Channel("restaurantes")
+    Emitter<Restaurante> restauranteEmitter;
+
     @GET
     @Counted(name = "Quantidade buscas restaurantes")
     @SimplyTimed(name = "Tempo simples de busca")
@@ -57,6 +63,7 @@ public class RestauranteResource {
     public Response adicionar(@Valid AdicionarRestauranteDTO dto) {
         final var restaurante = restauranteMapper.toEntity(dto);
         restaurante.persist();
+        restauranteEmitter.send(restaurante);
         return Response.status(CREATED).build();
     }
 
